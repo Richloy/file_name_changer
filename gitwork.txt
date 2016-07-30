@@ -1,0 +1,9 @@
+1 Create file 
+2 git add . or git add *.xxx 
+3 git commit -m 'message here'
+4 git push <remote repo>
+
+
+git clone <remote repo>
+git status
+
