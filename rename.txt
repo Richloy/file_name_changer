@@ -1,0 +1,23 @@
+1	Black	2014-10-07	
+2	Reichenbach	2014-10-14	
+3	Soul Survivor	2014-10-21	
+4	Paper Moon	2014-10-28	
+5	Fan Fiction	2014-11-11	
+6	Ask Jeeves	2014-11-18	
+7	Girls, Girls, Girls	2014-11-25	
+8	Hibbing 911	2014-12-02	
+9	The Things We Left Behind	2014-12-09	
+10	The Hunter Games	2015-01-20	
+11	There's No Place Like Home	2015-01-27	
+12	About a Boy	2015-02-03	
+13	Halt & Catch Fire	2015-02-10	
+14	The Executioner's Song	2015-02-17	
+15	The Things They Carried	2015-03-18	
+16	Paint It Black	2015-03-25	
+17	Inside Man	2015-04-01	
+18	Book of the Damned	2015-04-15	
+19	The Werther Project	2015-04-22	
+20	Angel Heart	2015-04-29	
+21	Dark Dynasty	2015-05-06	
+22	The Prisoner	2015-05-13	
+23	Brother's Keeper	2015-05-20	
