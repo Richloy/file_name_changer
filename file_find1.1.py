@@ -8,6 +8,7 @@ class Window(QtGui.QMainWindow):
         
         self.name = ""
         self.season = ""
+        self.format = ""
         self.setGeometry(400, 250, 600, 300)
         self.setWindowTitle("Game Tutorial")
 
@@ -16,7 +17,7 @@ class Window(QtGui.QMainWindow):
         self.dir_ = QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
         
         for file in os.listdir(self.dir_):
-            if file.endswith('.txt') or file.endswith('.mp4'):
+            if file.endswith(self.format):
                 self.file_list.append(file)
                 
         #Select file with new names
@@ -32,31 +33,62 @@ class Window(QtGui.QMainWindow):
         for i in range(len(rename_list)):
             print(rename_list[i])
 
-        #Create some functionality to GUI
-        self.label_series = QtGui.QLabel("Not Selected", self)
-        self.label_series.move(300, 10)
-        self.label_season = QtGui.QLabel("Not Selected", self)
-        self.label_season.move(300, 45)
-        self.btn = QtGui.QPushButton("Select Series", self)
-        self.btn.move(400, 10)
-        self.btn.clicked.connect(self.get_text)
-        self.btn = QtGui.QPushButton("Select Season", self)
-        self.btn.move(400, 45)
-        self.btn.clicked.connect(self.get_season)
-        self.btn_convert = QtGui.QPushButton("Select Text", self)
-        self.btn_convert.move(400, 100)
-        self.btn_convert.clicked.connect(self.convert_files)
-        
         self.home()
         
     def convert_files(self):
 
         print(self.name)
         print(self.season)
+        print(self.format)
+        print(self.dir_)
+
+        i = 1
+        '''if i <= 9:
+            episode = "E0" + str(i)
+        else:
+            episode = "E" + str(i)
+            
+        new_name = self.name + " " + self.season + episode +  " - " + self.format
+        '''
+        for file in os.listdir(self.dir_):
+            if i <= 9:
+                episode = "E0" + str(i)
+            else:
+                episode = "E" + str(i)
+            
+            new_name = self.name + " " + self.season + episode +  " - " + self.format
+
+            #if file.startswith("doc"):
+            os.rename(file, file)
+            print(file)
+            print(new_name)
+            i+=1
         
     def home(self):
-        
+
+        #Create some functionality to GUI
+        #Labels
+        self.label_series = QtGui.QLabel("Not Selected", self)
+        self.label_series.move(300, 10)
+        self.label_season = QtGui.QLabel("Not Selected", self)
+        self.label_season.move(300, 45)
+        self.label_format = QtGui.QLabel("Not Selected", self)
+        self.label_format.move(300, 80)
+        #buttons
+        self.btn = QtGui.QPushButton("Select Series", self)
+        self.btn.move(400, 10)
+        self.btn.clicked.connect(self.get_text)
+        self.btn = QtGui.QPushButton("Select Season", self)
+        self.btn.move(400, 45)
+        self.btn.clicked.connect(self.get_season)
+        self.btn = QtGui.QPushButton("Select Format", self)
+        self.btn.move(400, 80)
+        self.btn.clicked.connect(self.get_format)
+        self.btn_convert = QtGui.QPushButton("Convert", self)
+        self.btn_convert.move(400, 250)
+        self.btn_convert.clicked.connect(self.convert_files)
         #self.print_name()
+
         x = 25
         y = 10
         for i in range(len(self.file_list)):
@@ -87,6 +119,14 @@ class Window(QtGui.QMainWindow):
                 text = "S" + str(text)
                 self.label_season.setText(text)
             self.season = text
+
+    def get_format(self):
+        
+        text, ok = QtGui.QInputDialog.getText(self, 'Text Input Dialog', 'Enter The Series:')
+	
+        if ok:
+            self.label_format.setText(str(text))
+            self.format = str(text)
         
     def close_interface(self):
         choice = QtGui.QMessageBox.question(self, 'Exit', "Are you sure?",
