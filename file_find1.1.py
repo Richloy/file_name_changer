@@ -23,15 +23,15 @@ class Window(QtGui.QMainWindow):
         #Select file with new names
         f = open('rename.txt', 'r')
         
-        rename_list = []
+        self.rename_list = []
         lines = f.readlines()
         for line in lines:
             line_tokens = line.split('\t')
-            rename_list.append(line_tokens[1])
+            self.rename_list.append(line_tokens[1])
         f.close()
         
-        for i in range(len(rename_list)):
-            print(rename_list[i])
+        for i in range(len(self.rename_list)):
+            print(self.rename_list[i])
 
         self.home()
         
@@ -43,23 +43,19 @@ class Window(QtGui.QMainWindow):
         print(self.dir_)
 
         i = 1
-        '''if i <= 9:
-            episode = "E0" + str(i)
-        else:
-            episode = "E" + str(i)
-            
-        new_name = self.name + " " + self.season + episode +  " - " + self.format
-        '''
+
         for file in os.listdir(self.dir_):
             if i <= 9:
                 episode = "E0" + str(i)
             else:
                 episode = "E" + str(i)
             
-            new_name = self.name + " " + self.season + episode +  " - " + self.format
-
+            new_name = self.name + " " + self.season + episode +  " - " + self.rename_list[i-1] + self.format
+            print(new_name)
+            new_file = os.path.join(self.dir_, file)
+            
             #if file.startswith("doc"):
-            os.rename(file, file)
+            os.rename(new_file, new_name)
             print(file)
             print(new_name)
             i+=1
