@@ -10,7 +10,8 @@ class Window(QtGui.QMainWindow):
         self.season = ""
         self.format = ""
         self.setGeometry(400, 250, 600, 300)
-        self.setWindowTitle("Game Tutorial")
+        self.setWindowTitle("File Name Changer")
+        self.setWindowIcon(QtGui.QIcon('icon.png'))
 
         #Select Folder for files   
         self.file_list = []
@@ -37,25 +38,31 @@ class Window(QtGui.QMainWindow):
         
     def convert_files(self):
 
-        print(self.name)
-        print(self.season)
-        print(self.format)
-        print(self.dir_)
-
+        #start point for episode number
         i = 1
 
         for file in os.listdir(self.dir_):
+
+            #Get the file extension
+            file_token = file.split('.')
+            file_t_len = len(file_token)
+            self.format = '.' + file_token[file_t_len -1]
+
+            #Select format for episode
             if i <= 9:
                 episode = "E0" + str(i)
             else:
                 episode = "E" + str(i)
             
             new_name = self.name + " " + self.season + episode +  " - " + self.rename_list[i-1] + self.format
-            print(new_name)
+
+            #Complete full path for file to be renamed
             new_file = os.path.join(self.dir_, file)
             
-            #if file.startswith("doc"):
+            #Rename the file
             os.rename(new_file, new_name)
+
+            #Print old and new name of file
             print(file)
             print(new_name)
             i+=1
